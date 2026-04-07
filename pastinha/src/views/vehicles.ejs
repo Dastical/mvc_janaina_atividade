@@ -1,0 +1,20 @@
+<h1>Veículos</h1>
+<form method="POST" action="/vehicles">
+    <input name="brand" placeholder="Marca" required>
+    <input name="model" placeholder="Modelo" required>
+    <input name="year" placeholder="Ano" required>
+    <button>Cadastrar</button>
+</form>
+<ul>
+    <% vehicles.forEach(v=> { %>
+        <li>
+            <strong><%= v.brand %></strong> - <%= v.model %> - <%= v.year %> - <%= v.available ? "Disponível" : "Vendido" %>
+            <form method="POST" action="/vehicles/delete/<%= v.id %>" style="display:inline; margin-left:10px;">
+                <button type="submit">Excluir</button>
+            </form>
+            <a href="/vehicles/edit/<%= v.id %>" style="margin-left:10px;">Editar</a>
+        </li>
+    <% }) %>
+</ul>
+<a href="/">Home</a>
+<a href="/orders" style="margin-left:10px;">Pedidos</a>

@@ -1,0 +1,30 @@
+<h1>Pedidos</h1>
+<% if (typeof error !== 'undefined' && error) { %>
+    <p style="color:red;"><%= error %></p>
+<% } %>
+<form method="POST" action="/orders">
+    <select name="clientId" required>
+        <% clients.forEach(c=> { %>
+            <option value="<%= c.id %>"><%= c.name %></option>
+        <% }) %>
+    </select>
+    <select name="vehicleId" required>
+        <% vehicles.forEach(v => { %>
+            <option value="<%= v.id %>" <%= !v.available ? 'disabled' : '' %>>
+                <%= v.brand %> <%= v.model %> (<%= v.year %>) <%= !v.available ? '- VENDIDO' : '' %>
+            </option>
+        <% }) %>
+    </select>
+    <button>Criar Pedido</button>
+</form>
+<ul>
+    <% orders.forEach(o=> {
+        const client = clients.find(c => c.id === o.clientId)
+        const vehicle = vehicles.find(v => v.id === o.vehicleId)
+    %>
+        <li>
+            Pedido <%= o.id %> - Cliente: <%= client ? client.name : 'Desconhecido' %> - Veículo: <%= vehicle ? `${vehicle.brand} ${vehicle.model}` : 'Desconhecido' %> - Data: <%= o.date.toLocaleString() %>
+        </li>
+    <% }) %>
+</ul>
+<a href="/">Home</a>

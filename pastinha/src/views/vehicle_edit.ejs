@@ -1,0 +1,8 @@
+<h1>Editar Veículo</h1>
+<form method="POST" action="/vehicles/update/<%= vehicle.id %>">
+    <input name="brand" placeholder="Marca" value="<%= vehicle.brand %>" required>
+    <input name="model" placeholder="Modelo" value="<%= vehicle.model %>" required>
+    <input name="year" placeholder="Ano" value="<%= vehicle.year %>" required>
+    <button>Salvar</button>
+</form>
+<a href="/vehicles">Voltar</a>

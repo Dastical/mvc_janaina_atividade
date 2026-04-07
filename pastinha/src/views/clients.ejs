@@ -1,0 +1,12 @@
+<h1>Clientes</h1>
+<form method="POST" action="/clients">
+<input name="name" placeholder="Nome">
+<input name="email" placeholder="Email">
+<button>Cadastrar</button>
+</form>
+<ul>
+<% clients.forEach(c => { %>
+<li><%= c.name %> - <%= c.email %></li>
+<% }) %>
+</ul>
+<a href="/">Home</a>
